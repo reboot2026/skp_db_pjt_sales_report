@@ -1,0 +1,26 @@
+# 환경 변수 (DB 접속 정보)
+.env
+
+# 생성된 리포트 파일 (폴더는 유지)
+output/*
+!output/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 가상환경
+venv/
+.venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Excel 임시 파일
+~$*.xlsx

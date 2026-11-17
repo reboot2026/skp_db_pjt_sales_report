@@ -1,0 +1,6 @@
+pymysql
+pandas
+openpyxl
+python-dotenv
+# numpy 2.4 이상은 Windows 스마트 앱 컨트롤에 DLL이 차단되어 2.3대로 고정 (ReadMe 참고)
+numpy<2.4
