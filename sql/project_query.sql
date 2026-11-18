@@ -2,8 +2,7 @@
 -- --------------------------------------- 카테고리별.월별매출현황 
 with base_data as (
 	select p.catg_cd
-		  -- ,date_format(o.order_dttm, '%Y-%m') 	as mnth
-		  ,date_format(o.order_dttm, '%m') 	as mnth
+		  ,Month(o.order_dttm) 					as mnth
 		  ,sum(o.order_amont)					as order_amt 
 	from dt_pjt.ORDER o
 		 inner join ORDER_DESC d
@@ -75,7 +74,7 @@ group by c.cd_name
 select catg_nm			as 카테고리
 	  ,product_name		as 상품명
       ,order_qty		as 판매수량
-      ,rn 				as top
+      ,rn 				as 순위
  from category_order_qty_rn
 where rn <= 2 
 order by catg_nm, rn 
