@@ -44,10 +44,10 @@ group by c.cd_name
  with category_order_qty as (
 	select 
 		  p.catg_cd
-		 ,c.cd_name 	as catg_nm
+		 ,c.cd_name 					as catg_nm
          ,p.product_id	
          ,p.product_name 
-		 ,sum(od.qty)	as order_qty  
+		 ,cast(sum(od.qty) as signed)	as order_qty  
 	from ORDER_DESC od
 	 	 inner join `ORDER` o 
 	 			 on o.order_id = od.order_id 

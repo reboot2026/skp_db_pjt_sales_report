@@ -52,14 +52,18 @@ class YearSalesReport:
         # 월별합계 열 합계
         monthly_sales.loc['전체 합계'] = monthly_sales.sum(axis=0)
 
+        # float -> int로 변경 (for CSV)
+        monthly_sales.astype(int)
+
         # 인덱스(카테고리)를 일반 컬럼으로 
         monthly_sales = monthly_sales.reset_index()
 
         return monthly_sales 
 
     def get_category_product_avg_price(self):
-        return pd.read_sql(CATEGORY_PRODUCT_AVG_PRICE, self.conn)
-        
+        df =  pd.read_sql(CATEGORY_PRODUCT_AVG_PRICE, self.conn)
+        df["평균가"] = df["평균가"].astype(int)
+        return df 
     
     def get_category_top2_products(self):   
         return pd.read_sql(CATEGORY_TOP2_PRODUCT, self.conn, params=self.get_params()) 

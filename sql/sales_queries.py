@@ -47,7 +47,7 @@ CATEGORY_TOP2_PRODUCT = """
 		 ,c.cd_name 	as catg_nm
          ,p.product_id	
          ,p.product_name 
-		 ,sum(od.qty)	as order_qty  
+		 ,cast(sum(od.qty) as signed)	as order_qty  
 	from ORDER_DESC od
 	 	 inner join `ORDER` o 
 	 			 on o.order_id = od.order_id 
@@ -68,7 +68,7 @@ CATEGORY_TOP2_PRODUCT = """
 		  ,product_id
 		  ,product_name 
           ,order_qty
-		  ,row_number() over (partition by catg_cd order by order_qty desc) as rn 
+		  ,row_number() over (partition by catg_cd order by order_qty desc, product_name) as rn 
 	 from category_order_qty
 )
 select catg_nm			as 카테고리

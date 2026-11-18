@@ -48,6 +48,9 @@ def top2_product_chart(df):
                    title="카테고리별 Top2 상품 판매수량")
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.set_xlabel("판매수량(개)")
+
+    # 데이터셋 결과의 첫행을 맨 위로
+    ax.invert_yaxis()
     return ax 
 
 # 시트명 - 그래프 함수(get_sheets()의 시트명과 똑같이)
