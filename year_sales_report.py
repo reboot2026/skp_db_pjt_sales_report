@@ -1,7 +1,5 @@
-"""Year 매출 리포트 클래스
-
-    ReportGenerator에서 호출된다. 
-
+"""
+    Year 매출 리포트 클래스
 """
 
 from datetime import date
@@ -65,7 +63,6 @@ class YearSalesReport:
     
     def get_category_top2_products(self):   
         return pd.read_sql(CATEGORY_TOP2_PRODUCT, self.conn, params=self.get_params()) 
-# "카테고리별상품수및평균가" : self.get_category_product_avg_price(),
 
     def get_sheets(self):
         sheets = {

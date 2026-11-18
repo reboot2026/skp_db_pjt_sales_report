@@ -1,6 +1,6 @@
 GET_YEARS = """
 select distinct Year(o.order_dttm) as ORDER_YEAR
- from dt_pjt.ORDER o 
+ from `ORDER` o 
 order by 1 
 """
 
@@ -9,7 +9,7 @@ with base_data as (
 	select p.catg_cd
 		  ,Month(o.order_dttm) 				as mnth
 		  ,sum(d.qty * p.product_price)		as order_amt 
-	from dt_pjt.ORDER o
+	from `ORDER` o
 		 inner join ORDER_DESC d
 				 on d.order_id = o.order_id 
 		 inner join PRODUCT p 
@@ -49,7 +49,7 @@ CATEGORY_TOP2_PRODUCT = """
          ,p.product_name 
 		 ,sum(od.qty)	as order_qty  
 	from ORDER_DESC od
-	 	 inner join dt_pjt.ORDER o 
+	 	 inner join `ORDER` o 
 	 			 on o.order_id = od.order_id 
 		 inner join PRODUCT p
 				 on p.product_id = od.product_id 

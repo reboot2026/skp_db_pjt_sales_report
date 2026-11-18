@@ -4,7 +4,7 @@ with base_data as (
 	select p.catg_cd
 		  ,Month(o.order_dttm) 					as mnth
 		  ,sum(o.order_amont)					as order_amt 
-	from dt_pjt.ORDER o
+	from `ORDER` o
 		 inner join ORDER_DESC d
 				 on d.order_id = o.order_id 
 		 inner join PRODUCT p 
@@ -49,7 +49,7 @@ group by c.cd_name
          ,p.product_name 
 		 ,sum(od.qty)	as order_qty  
 	from ORDER_DESC od
-	 	 inner join dt_pjt.ORDER o 
+	 	 inner join `ORDER` o 
 	 			 on o.order_id = od.order_id 
 		 inner join PRODUCT p
 				 on p.product_id = od.product_id 

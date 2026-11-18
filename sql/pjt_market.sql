@@ -33,7 +33,7 @@ select m.grad_cd
  from MEMBER m
 	  inner join CD_CMMN g
 			  on g.cd = m.grad_cd
-	  left  join dt_pjt.ORDER o
+	  left  join `ORDER` o
 			  on o.member_id = m.member_id
 where 1=1
 group by m.grad_cd
@@ -57,7 +57,7 @@ select m.member_id
       ,count(distinct order_id) 	as 주문건수
       ,sum(o.order_amont) 			as 주문금액
   from MEMBER m
-	   left join dt_pjt.ORDER o
+	   left join `ORDER` o
 			  on m.member_id = o.member_id
 where 1=1
 group by m.member_id
@@ -104,7 +104,7 @@ with monthly_sales as (
 	select date_format(o.order_dttm, '%Y-%m') 	as mnth
 		  ,count(distinct o.order_id)			as ordr_cnt
 		  ,sum(o.order_amont)					as ordr_amt
-	from dt_pjt.ORDER o
+	from `ORDER` o
 	where 1=1
 	group by mnth
 ), monthly_sales_with_prvs as (
@@ -176,7 +176,7 @@ order by catg_nm, rn
 select m.member_id
 	  ,m.member_name 
  from MEMBER m
-	  left join dt_pjt.ORDER o
+	  left join `ORDER` o
 			 on m.member_id = o.member_id
 where 1=1
   and o.member_id is null  -- 주문 없는 회원 없음  
@@ -192,7 +192,7 @@ where 1=1
 
 select o.*, h.*
       ,datediff(now(), start_dttm) as days 
- from dt_pjt.ORDER o
+ from `ORDER` o
 	  inner join ORDER_STAT_HISTORY h
 			  on o.order_id = h.order_id 
 where 1=1 
@@ -213,7 +213,7 @@ with grad_member_order_amt as (
 		  ,m.member_name 
           ,sum(o.order_amont) as order_amt 
 	 from MEMBER m
-		  left  join dt_pjt.ORDER o
+		  left  join `ORDER` o
 				  on o.member_id = m.member_id 
 	where 1=1
 	group by m.grad_cd
